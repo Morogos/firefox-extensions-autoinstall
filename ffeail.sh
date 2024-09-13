@@ -12,6 +12,8 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/3924046/location_guard-2.5.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4345347/flagfox-6.1.78.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4343983/ghostery-10.4.3.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4330661/fake_filler-4.1.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4325805/duckduckgo_for_firefox-2024.7.24.xpi"
 )
 
 # Profile directories for Firefox ESR and regular Firefox
