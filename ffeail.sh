@@ -20,6 +20,12 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4341235/darkreader-4.9.89.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4262820/canvasblocker-1.10.1.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4098688/user_agent_string_switcher-0.5.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4328793/adnauseam-3.22.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3617919/whatcampaign-1.0.9.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4315769/violentmonkey-2.20.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4328681/ublock_origin-1.59.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3901885/hacktools-0.4.0.xpi"
     
 )
 
