@@ -18,6 +18,8 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/3551985/happy_bonobo_disable_webrtc-1.0.23.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4255788/decentraleyes-2.0.19.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4341235/darkreader-4.9.89.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4262820/canvasblocker-1.10.1.xpi"
     
 )
 
