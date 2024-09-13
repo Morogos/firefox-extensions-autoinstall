@@ -14,6 +14,9 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4343983/ghostery-10.4.3.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4330661/fake_filler-4.1.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4325805/duckduckgo_for_firefox-2024.7.24.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4240055/disconnect-20.3.1.2.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3551985/happy_bonobo_disable_webrtc-1.0.23.xpi"
+    
 )
 
 # Profile directories for Firefox ESR and regular Firefox
