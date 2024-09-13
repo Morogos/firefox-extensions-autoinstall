@@ -7,6 +7,8 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4297951/buster_captcha_solver-3.1.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4307780/view_page_archive-6.1.1.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4309046/search_by_image-7.1.0.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3360398/privacy_possum-2019.7.18.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4321653/privacy_badger17-2024.7.17.xpi"
 )
 
 # Profile directories for Firefox ESR and regular Firefox
