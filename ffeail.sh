@@ -2,8 +2,8 @@
 
 # Define the extensions to be installed (list of .xpi download URLs)
 EXTENSIONS=(
-    "https://addons.mozilla.org/firefox/downloads/latest/extension1/addon.xpi"
-    "https://addons.mozilla.org/firefox/downloads/latest/extension2/addon.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4349514/noscript-11.4.37.xpi"
 )
 
 # Profile directories for Firefox ESR and regular Firefox
