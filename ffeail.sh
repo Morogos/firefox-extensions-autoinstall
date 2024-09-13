@@ -16,6 +16,8 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4325805/duckduckgo_for_firefox-2024.7.24.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4240055/disconnect-20.3.1.2.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/3551985/happy_bonobo_disable_webrtc-1.0.23.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4255788/decentraleyes-2.0.19.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4341235/darkreader-4.9.89.xpi"
     
 )
 
