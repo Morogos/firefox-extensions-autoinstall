@@ -3,6 +3,7 @@
 # extensions (list of .xpi download URLs)
 EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/4199397/openvideo-4.2.1.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4349514/noscript-11.4.37.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4297951/buster_captcha_solver-3.1.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4307780/view_page_archive-6.1.1.xpi"
