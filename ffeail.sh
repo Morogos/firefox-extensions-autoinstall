@@ -31,72 +31,89 @@ EXTENSIONS=(
     
 )
 
+# Trap to clean up in case of an error
+trap 'echo "An error occurred. Exiting."; exit 1' ERR
+
+
 # Function to download and install extensions for a given profile
 download_and_install() {
-    PROFILE_DIR=$1
-    echo "Installing extensions for profile: $PROFILE_DIR"
-    
-    # Check if the extensions directory exists, if not, create it
-    if [ ! -d "$PROFILE_DIR/extensions" ]; then
-        echo "Creating extensions directory in $PROFILE_DIR"
-        mkdir -p "$PROFILE_DIR/extensions"
+    local profile_dir=$1
+    echo "Processing profile: $profile_dir"
+
+    # Ensure the extensions directory exists
+    local ext_dir="$profile_dir/extensions"
+    if [ ! -d "$ext_dir" ]; then
+        echo "Creating extensions directory at $ext_dir"
+        mkdir -p "$ext_dir"
     fi
 
-    # Download and copy extensions
-    for EXTENSION_URL in "${EXTENSIONS[@]}"; do
-        EXTENSION_NAME=$(basename "$EXTENSION_URL")
-        EXTENSION_PATH="/tmp/$EXTENSION_NAME"
-        
-        # Download the extension if it doesn't already exist
-        if [ ! -f "$EXTENSION_PATH" ]; then
-            echo "Downloading $EXTENSION_NAME..."
-            wget -O "$EXTENSION_PATH" "$EXTENSION_URL" || { echo "Failed to download $EXTENSION_NAME"; continue; }
+    # Download and install each extension
+    for url in "${EXTENSIONS[@]}"; do
+        local ext_name=$(basename "$url")
+        local ext_path="/tmp/$ext_name"
+
+        # Download the extension if not already downloaded
+        if [ ! -f "$ext_path" ]; then
+            echo "Downloading $ext_name..."
+            wget -q -O "$ext_path" "$url"
+            if [ $? -ne 0 ]; then
+                echo "Failed to download $ext_name. Skipping."
+                continue
+            fi
+        else
+            echo "$ext_name already downloaded, skipping."
         fi
-        
+
         # Copy the extension to the profile's extensions directory
-        cp "$EXTENSION_PATH" "$PROFILE_DIR/extensions/" || { echo "Failed to copy $EXTENSION_NAME"; continue; }
+        echo "Installing $ext_name to $ext_dir"
+        cp "$ext_path" "$ext_dir" || { echo "Failed to install $ext_name."; continue; }
     done
 }
 
-# Function to find and process all Firefox-based browser profiles
+# Function to find and process profiles in a given directory
 process_profiles() {
-    BROWSER_NAME="$1"
-    PROFILE_DIR="$2"
-    
-    echo "Looking for profiles in $PROFILE_DIR"
-    
-    if [ -d "$PROFILE_DIR" ]; then
-        found_profiles=false
-        # Only look for valid profile directories (*.default* or *.dev-edition*)
-        for PROFILE in "$PROFILE_DIR"/*.default* "$PROFILE_DIR"/*.dev-edition*; do
-            if [ -d "$PROFILE" ]; then
-                found_profiles=true
-                echo "Profile found: $PROFILE"
-                download_and_install "$PROFILE"
-            fi
-        done
-        
-        if [ "$found_profiles" = false ]; then
-            echo "No profile directories found in $PROFILE_DIR"
+    local browser_name=$1
+    local profile_dir=$2
+
+    echo "Searching for $browser_name profiles in $profile_dir"
+
+    if [ ! -d "$profile_dir" ]; then
+        echo "$browser_name profile directory not found at $profile_dir"
+        return
+    fi
+
+    local profiles_found=false
+    for profile in "$profile_dir"/*.default* "$profile_dir"/*.dev-edition*; do
+        if [ -d "$profile" ]; then
+            profiles_found=true
+            download_and_install "$profile"
         fi
-    else
-        echo "$BROWSER_NAME profile directory not found."
+    done
+
+    if [ "$profiles_found" = false ]; then
+        echo "No valid $browser_name profiles found in $profile_dir"
     fi
 }
 
-# Define common profile locations, using the real user home directory
-USER_HOME=$(eval echo "~$(logname)")  # Get the home directory of the real user
+# Ensure the script is not run as root (which would use the /root home)
+if [ "$(id -u)" = "0" ]; then
+    echo "Please do not run this script as root or using sudo."
+    exit 1
+fi
 
-BROWSERS=(
-    "Firefox:$USER_HOME/.mozilla/firefox"
-    "Firefox Developer Edition:$USER_HOME/.mozilla/firefox-developer-edition"
-    "Tor Browser:$USER_HOME/tor-browser_en-US/Browser/TorBrowser/Data/Browser"
+# Define common profile locations using the user's home directory
+user_home=$(eval echo "~$(logname)")
+
+browsers=(
+    "Firefox:$user_home/.mozilla/firefox"
+    "Firefox Developer Edition:$user_home/.mozilla/firefox-developer-edition"
+    "Tor Browser:$user_home/tor-browser_en-US/Browser/TorBrowser/Data/Browser"
 )
 
-# Process profiles for each defined browser
-for BROWSER in "${BROWSERS[@]}"; do
-    IFS=":" read -r NAME DIR <<< "$BROWSER"
-    process_profiles "$NAME" "$DIR"
+# Process profiles for each browser
+for browser in "${browsers[@]}"; do
+    IFS=":" read -r name dir <<< "$browser"
+    process_profiles "$name" "$dir"
 done
 
 echo "Extension installation complete."
