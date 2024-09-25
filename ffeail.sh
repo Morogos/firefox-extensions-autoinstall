@@ -49,30 +49,34 @@ download_and_install() {
         
         # Download the extension if it doesn't already exist
         if [ ! -f "$EXTENSION_PATH" ]; then
-            wget -O "$EXTENSION_PATH" "$EXTENSION_URL"
+            echo "Downloading $EXTENSION_NAME..."
+            wget -O "$EXTENSION_PATH" "$EXTENSION_URL" || { echo "Failed to download $EXTENSION_NAME"; continue; }
         fi
         
         # Copy the extension to the profile's extensions directory
-        cp "$EXTENSION_PATH" "$PROFILE_DIR/extensions/"
+        cp "$EXTENSION_PATH" "$PROFILE_DIR/extensions/" || { echo "Failed to copy $EXTENSION_NAME"; continue; }
     done
 }
 
 # Function to find and process all Firefox-based browser profiles
 process_profiles() {
-    BROWSER_NAME=$1
-    PROFILE_DIR=$2
+    BROWSER_NAME="$1"
+    PROFILE_DIR="$2"
     
     echo "Looking for profiles in $PROFILE_DIR"
     
-    # Find all profiles within the given directory
     if [ -d "$PROFILE_DIR" ]; then
+        found_profiles=false
         for PROFILE in "$PROFILE_DIR"/*.default*; do
             if [ -d "$PROFILE" ]; then
+                found_profiles=true
                 download_and_install "$PROFILE"
-            else
-                echo "No profile directories found in $PROFILE_DIR"
             fi
         done
+        
+        if [ "$found_profiles" = false ]; then
+            echo "No profile directories found in $PROFILE_DIR"
+        fi
     else
         echo "$BROWSER_NAME profile directory not found."
     fi
