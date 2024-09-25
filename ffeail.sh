@@ -1,8 +1,7 @@
 #!/bin/bash
-
 set -e  # Stop on first error
 
-# extensions (list of .xpi download URLs)
+# List of extensions (.xpi download URLs)
 EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4199397/openvideo-4.2.1.xpi"
@@ -30,12 +29,65 @@ EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4328681/ublock_origin-1.59.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/3901885/hacktools-0.4.0.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4352350/javascript_restrictor-0.19.1.xpi"
-    
 )
 
 # Trap to clean up in case of an error
 trap 'echo "An error occurred. Exiting."; exit 1' ERR
 
+# Function to extract metadata from .xpi (zip) files
+extract_metadata() {
+    local xpi_file=$1
+    local temp_dir=$(mktemp -d)
+
+    # Ensure the temp directory is cleaned up
+    trap 'rm -rf "$temp_dir"' EXIT
+
+    unzip -q "$xpi_file" manifest.json -d "$temp_dir"
+    local manifest_file="$temp_dir/manifest.json"
+
+    if [ -f "$manifest_file" ]; then
+        # Extract extension ID and version from manifest.json
+        local extension_id=$(jq -r '.applications.gecko.id // .browser_specific_settings.gecko.id // .name' "$manifest_file")
+        local version=$(jq -r '.version' "$manifest_file")
+        # If either ID or version is empty, return an error
+        if [[ -z "$extension_id" || -z "$version" ]]; then
+            echo "Error: Invalid manifest.json in $xpi_file"
+            return 1
+        fi
+    else
+        echo "Error: No manifest.json found in $xpi_file"
+        return 1
+    fi
+
+    echo "$extension_id:$version"
+    return 0
+}
+
+# Function to update the extensions.json file for the profile
+update_extensions_json() {
+    local profile_dir=$1
+    local ext_id=$2
+    local ext_version=$3
+    local ext_path=$4
+    local ext_json="$profile_dir/extensions.json"
+
+    # Check if the extensions.json file exists, if not, create a basic structure
+    if [ ! -f "$ext_json" ]; then
+        echo '{"schemaVersion":31, "addons":[]}' > "$ext_json"
+    fi
+
+    # Check if the extension is already registered in the extensions.json
+    if ! jq -e --arg id "$ext_id" '.addons[] | select(.id == $id)' "$ext_json" > /dev/null; then
+        # Add the new extension entry
+        jq --arg id "$ext_id" --arg version "$ext_version" --arg path "$ext_path" \
+        '.addons += [{"id": $id, "version": $version, "active": true, "path": $path, "type": "extension"}]' "$ext_json" > "${ext_json}.tmp"
+
+        mv "${ext_json}.tmp" "$ext_json"
+        echo "Updated $ext_json with extension $ext_id."
+    else
+        echo "Extension $ext_id is already registered in $ext_json."
+    fi
+}
 
 # Function to download and install extensions for a given profile
 download_and_install() {
@@ -44,12 +96,8 @@ download_and_install() {
 
     # Ensure the extensions directory exists
     local ext_dir="$profile_dir/extensions"
-    if [ ! -d "$ext_dir" ]; then
-        echo "Creating extensions directory at $ext_dir"
-        mkdir -p "$ext_dir"
-    fi
+    mkdir -p "$ext_dir"
 
-    # Download and install each extension
     for url in "${EXTENSIONS[@]}"; do
         local ext_name=$(basename "$url")
         local ext_path="/tmp/$ext_name"
@@ -62,13 +110,24 @@ download_and_install() {
                 echo "Failed to download $ext_name. Skipping."
                 continue
             fi
-        else
-            echo "$ext_name already downloaded, skipping."
         fi
 
+        # Extract metadata (ID and version) from the downloaded .xpi
+        metadata=$(extract_metadata "$ext_path")
+        if [ $? -ne 0 ]; then
+            echo "Failed to extract metadata from $ext_name. Skipping."
+            continue
+        fi
+
+        # Split the metadata into extension_id and version
+        ext_id=$(echo "$metadata" | cut -d':' -f1)
+        ext_version=$(echo "$metadata" | cut -d':' -f2)
+
         # Copy the extension to the profile's extensions directory
-        echo "Installing $ext_name to $ext_dir"
-        cp "$ext_path" "$ext_dir" || { echo "Failed to install $ext_name."; continue; }
+        cp "$ext_path" "$ext_dir/"
+
+        # Update extensions.json with the new extension information
+        update_extensions_json "$profile_dir" "$ext_id" "$ext_version" "$ext_dir/$ext_name"
     done
 }
 
@@ -97,7 +156,7 @@ process_profiles() {
     fi
 }
 
-# Ensure the script is not run as root (which would use the /root home)
+# Ensure the script is not run as root (which would use /root home)
 if [ "$(id -u)" = "0" ]; then
     echo "Please do not run this script as root or using sudo."
     exit 1
@@ -118,4 +177,4 @@ for browser in "${browsers[@]}"; do
     process_profiles "$name" "$dir"
 done
 
-echo "Extension installation complete."
+echo "Extension installation and registration complete."
