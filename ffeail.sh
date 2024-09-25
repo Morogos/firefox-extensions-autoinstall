@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e  # Stop on first error
+
 # extensions (list of .xpi download URLs)
 EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
