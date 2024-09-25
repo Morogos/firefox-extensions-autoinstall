@@ -67,7 +67,8 @@ process_profiles() {
     
     if [ -d "$PROFILE_DIR" ]; then
         found_profiles=false
-        for PROFILE in "$PROFILE_DIR"/*.default* "$PROFILE_DIR"/*.dev-edition* "$PROFILE_DIR"/*; do
+        # Only look for valid profile directories (*.default* or *.dev-edition*)
+        for PROFILE in "$PROFILE_DIR"/*.default* "$PROFILE_DIR"/*.dev-edition*; do
             if [ -d "$PROFILE" ]; then
                 found_profiles=true
                 echo "Profile found: $PROFILE"
@@ -83,11 +84,13 @@ process_profiles() {
     fi
 }
 
-# Define common profile locations
+# Define common profile locations, using the real user home directory
+USER_HOME=$(eval echo "~$(logname)")  # Get the home directory of the real user
+
 BROWSERS=(
-    "Firefox:$HOME/.mozilla/firefox"
-    "Firefox Developer Edition:$HOME/.mozilla/firefox-developer-edition"
-    "Tor Browser:$HOME/tor-browser_en-US/Browser/TorBrowser/Data/Browser"
+    "Firefox:$USER_HOME/.mozilla/firefox"
+    "Firefox Developer Edition:$USER_HOME/.mozilla/firefox-developer-edition"
+    "Tor Browser:$USER_HOME/tor-browser_en-US/Browser/TorBrowser/Data/Browser"
 )
 
 # Process profiles for each defined browser
