@@ -67,11 +67,10 @@ process_profiles() {
     
     if [ -d "$PROFILE_DIR" ]; then
         found_profiles=false
-        echo "Contents of $PROFILE_DIR:"
-        ls -l "$PROFILE_DIR"  # List contents for debugging
-        for PROFILE in "$PROFILE_DIR"/*.default*; do
+        for PROFILE in "$PROFILE_DIR"/*.default* "$PROFILE_DIR"/*.dev-edition* "$PROFILE_DIR"/*; do
             if [ -d "$PROFILE" ]; then
                 found_profiles=true
+                echo "Profile found: $PROFILE"
                 download_and_install "$PROFILE"
             fi
         done
@@ -84,9 +83,17 @@ process_profiles() {
     fi
 }
 
-# Process profiles for various Firefox-based browsers
-process_profiles "Firefox" "$HOME/.mozilla/firefox"
-process_profiles "Firefox Developer Edition" "$HOME/.mozilla/firefox-developer-edition"
-process_profiles "Tor Browser" "$HOME/tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default"
+# Define common profile locations
+BROWSERS=(
+    "Firefox:$HOME/.mozilla/firefox"
+    "Firefox Developer Edition:$HOME/.mozilla/firefox-developer-edition"
+    "Tor Browser:$HOME/tor-browser_en-US/Browser/TorBrowser/Data/Browser"
+)
+
+# Process profiles for each defined browser
+for BROWSER in "${BROWSERS[@]}"; do
+    IFS=":" read -r NAME DIR <<< "$BROWSER"
+    process_profiles "$NAME" "$DIR"
+done
 
 echo "Extension installation complete."
