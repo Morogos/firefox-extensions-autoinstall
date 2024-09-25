@@ -4,6 +4,11 @@ script works with any profile it finds that is firefox based. If the extension .
 
 # to do - add extension for Secure SNI
 
+# prerequisites
+
+    sudo apt-get install jq
+
+
 # Extension List
 
 # Use - Linux
