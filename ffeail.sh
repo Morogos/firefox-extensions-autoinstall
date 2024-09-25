@@ -67,6 +67,8 @@ process_profiles() {
     
     if [ -d "$PROFILE_DIR" ]; then
         found_profiles=false
+        echo "Contents of $PROFILE_DIR:"
+        ls -l "$PROFILE_DIR"  # List contents for debugging
         for PROFILE in "$PROFILE_DIR"/*.default*; do
             if [ -d "$PROFILE" ]; then
                 found_profiles=true
