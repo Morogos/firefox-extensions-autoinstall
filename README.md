@@ -27,7 +27,7 @@ script works with any profile it finds that is firefox based. If the extension .
 10. **Flagfox**
 11. **Ghostery**
 12. **Fake Filler**
-13. **DuckDuckGo for Firefox**
+13. **DuckDuckGo Privacy Suite**
 14. **Disconnect**
 15. **Disable WebRTC**
 16. **Decentraleyes**
