@@ -29,7 +29,7 @@ script works with any profile it finds that is firefox based. If the extension .
 12. **Fake Filler**
 13. **DuckDuckGo for Firefox**
 14. **Disconnect**
-15. **Happy Bonobo Disable WebRTC**
+15. **Disable WebRTC**
 16. **Decentraleyes**
 17. **Dark Reader**
 18. **ClearURLs**
