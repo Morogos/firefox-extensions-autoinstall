@@ -19,7 +19,7 @@ script works with any profile it finds that is firefox based. If the extension .
 2. **OpenVideo**
 3. **NoScript**
 4. **Buster Captcha Solver**
-5. **View Page Archive**
+5. **Archive**
 6. **Search by Image**
 7. **Privacy Possum**
 8. **Privacy Badger**
