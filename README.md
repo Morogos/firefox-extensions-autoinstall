@@ -1,26 +1,26 @@
-# firefox-extensions-autoinstall
-detects any profile directory inside the .mozilla/firefox, .mozilla/firefox-developer-edition, and Tor’s profile directory (tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default. The 
-script works with any profile it finds that is firefox based. If the extension .xpi file is already downloaded to /tmp, it won't be downloaded again, saving time.
+<h1> firefox-extensions-autoinstall </h1>
+<p1> detects any profile directory inside the .mozilla/firefox, .mozilla/firefox-developer-edition, and Tor’s profile directory (tor-browser_en-US/Browser/TorBrowser/Data/Browser/profile.default. The 
+script works with any profile it finds that is firefox based. If the extension .xpi file is already downloaded to /tmp, it won't be downloaded again, saving time. </p1>
 
-# to do - add extension for Secure SNI, make the script work again (isnt working as of today, I believe its due to how firefox based browsers handle extension signing, i am working on a solution)
+<h2> to do - add extension for Secure SNI, make the script work again (isnt working as of today, I believe its due to how firefox based browsers handle extension signing, i am working on a solution) </h2>
 
 
 
-# prerequisites
+<h2> prerequisites </h2>
 
     sudo apt-get install jq
 
 
-# Extension List
+<h2> Extension List </h2>
 
-# Use - Linux
+<h2> Use - Linux </h2>
 Save the Script: ffeail.sh
 
 Make it Executable: chmod +x ffeail.sh
 
 Run: ./ffeail.sh
 
-# Use - Windows (gross, ew, yuck)
+<h2> Use - Windows (gross, ew, yuck) </h2>
 1.Install WSL:
     Open PowerShell as Administrator and run:
         wsl --install
