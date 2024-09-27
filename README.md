@@ -13,6 +13,8 @@ script works with any profile it finds that is firefox based. If the extension .
 
 <h2> Extension List </h2>
 <p2>
+
+    
 1. **Bitwarden Password Manager**
 2. **OpenVideo**
 3. **NoScript**
