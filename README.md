@@ -13,40 +13,33 @@ script works with any profile it finds that is firefox based. If the extension .
 
 <h2> Extension List </h2>
 <p2>
-1. Bitwarden Password Manager 
-    
-2. OpenVideo
+1. **Bitwarden Password Manager**
+2. **OpenVideo**
+3. **NoScript**
+4. **Buster Captcha Solver**
+5. **View Page Archive**
+6. **Search by Image**
+7. **Privacy Possum**
+8. **Privacy Badger 17**
+9. **Location Guard**
+10. **Flagfox**
+11. **Ghostery**
+12. **Fake Filler**
+13. **DuckDuckGo for Firefox**
+14. **Disconnect**
+15. **Happy Bonobo Disable WebRTC**
+16. **Decentraleyes**
+17. **Dark Reader**
+18. **ClearURLs**
+19. **CanvasBlocker**
+20. **User-Agent String Switcher**
+21. **AdNauseam**
+22. **WhatCampaign**
+23. **Violent Monkey**
+24. **uBlock Origin**
+25. **HackTools**
+26. **JavaScript Restrictor**
 
-3. NoScript
-
-4. Buster Captcha Solver
-
-5. View Page Archive
-
-6. Search by Image
-
-7. Privacy Possum
-
-8. Privacy Badger
-
-9. Location Guard
-10. Flagfox
-11. Ghostery
-12. Fake Filler
-13. DuckDuckGo for Firefox
-14. Disconnect
-15. Disable WebRTC
-16. Decentraleyes
-17. Dark Reader
-18. ClearURLs
-19. CanvasBlocker
-20. User-Agent String Switcher
-21. AdNauseam
-22. WhatCampaign
-23. Violent Monkey
-24. uBlock Origin
-25. HackTools
-26. JavaScript Restrictor
 </p2>
 
 <h2> Use Guide - Linux </h2>
