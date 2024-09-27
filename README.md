@@ -13,14 +13,14 @@ script works with any profile it finds that is firefox based. If the extension .
 
 <h2> Extension List </h2>
 
-<h2> Use - Linux </h2>
+<h2> Use Guide - Linux </h2>
 Save the Script: ffeail.sh
 
 Make it Executable: chmod +x ffeail.sh
 
 Run: ./ffeail.sh
 
-<h2> Use - Windows (gross, ew, yuck) </h2>
+<h2> Use Guide - Windows (gross, ew, yuck) </h2>
 1.Install WSL:
     Open PowerShell as Administrator and run:
         wsl --install
