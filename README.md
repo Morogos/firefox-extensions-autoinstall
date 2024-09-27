@@ -22,7 +22,7 @@ script works with any profile it finds that is firefox based. If the extension .
 5. **View Page Archive**
 6. **Search by Image**
 7. **Privacy Possum**
-8. **Privacy Badger 17**
+8. **Privacy Badger**
 9. **Location Guard**
 10. **Flagfox**
 11. **Ghostery**
