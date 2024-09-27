@@ -82,3 +82,46 @@ Update the process_profiles function to point to this path:
 process_profiles "Firefox" "/mnt/c/Users/YourUsername/AppData/Roaming/Mozilla/Firefox"
 
 There you go you windows using plebs, switch to linux goddamnit
+
+
+<h3> useful things that im using for ideas, notes to self </h3>
+Global addon install
+
+If you want to install an extension automatically to all users in your system you need to extract it, rename the folder that contains the addon to the addon's id string and copy it to the firefox global extensions folder /usr/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/, anything that you use there will be called up automatic when a user opens firefox.
+User specific install
+
+If you want to install an extension automatically to just one user in your system you need to extract it, rename the folder that contains the addon to the addon's id string and copy it to the firefox user extensions folder /home/user_name/.mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/ (create it if it does not exist), anything that you use there will be called up automatic when a user opens firefox.
+How-to prepare an addon for automatic install - Example
+
+Make an extensions folder in your home and download the addon in to it
+
+mkdir ~/extensions
+cd ~/extensions
+wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi
+
+Extract it and delete the original
+
+unzip ~/extensions/addon-1865-latest.xpi
+rm ~/extensions/addon-1865-latest.xpi
+
+Read the first line in the install.rdf file to get the addon's id (in this case it will be {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}). and create a folder with that name
+
+mkdir ~/extensions/{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}
+
+Move all the files in your extensions folder into the newly created ~/extensions/{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d} and you are ready to install by moving the {d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d} folder, as described, for a local install or for a global install.
+How-to set the default home page
+
+To change your homepage without using the preferences inside firefox you have to edit ~/.mozilla/firefox/*.default/prefs.js (where *.default is a folder inside ~/.mozilla/firefox created for your user) and add this line to the end of it
+
+user_pref("browser.startup.homepage", "http://uptechtalk.com");
+
+or using this command
+
+echo "user_pref("browser.startup.homepage", "http://uptechtalk.com");" >> ~/.mozilla/firefox/*.default/prefs.js
+
+You need to do it after closing firefox or the program will overwrite the setting on exit.
+
+If your user has not used firefox yet and you want to set the homepage for all new users (set homepage globally) use this command
+
+echo "user_pref("browser.startup.homepage", "http://uptechtalk.com");" >> /etc/xul-ext/ubufox.js
+
