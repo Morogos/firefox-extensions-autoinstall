@@ -12,6 +12,34 @@ script works with any profile it finds that is firefox based. If the extension .
 
 
 <h2> Extension List </h2>
+<p2>
+Bitwarden Password Manager
+OpenVideo
+NoScript
+Buster Captcha Solver
+View Page Archive
+Search by Image
+Privacy Possum
+Privacy Badger 17
+Location Guard
+Flagfox
+Ghostery
+Fake Filler
+DuckDuckGo for Firefox
+Disconnect
+Happy Bonobo Disable WebRTC
+Decentraleyes
+Dark Reader
+ClearURLs
+CanvasBlocker
+User-Agent String Switcher
+AdNauseam
+WhatCampaign
+Violent Monkey
+uBlock Origin
+HackTools
+JavaScript Restrictor
+</p2>
 
 <h2> Use Guide - Linux </h2>
 Save the Script: ffeail.sh
