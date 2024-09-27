@@ -14,13 +14,21 @@ script works with any profile it finds that is firefox based. If the extension .
 <h2> Extension List </h2>
 <p2>
 1. Bitwarden Password Manager 
+    
 2. OpenVideo
+
 3. NoScript
+
 4. Buster Captcha Solver
+
 5. View Page Archive
+
 6. Search by Image
+
 7. Privacy Possum
+
 8. Privacy Badger
+
 9. Location Guard
 10. Flagfox
 11. Ghostery
