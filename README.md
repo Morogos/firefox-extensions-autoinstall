@@ -41,6 +41,7 @@ script works with any profile it finds that is firefox based. If the extension .
 24. **uBlock Origin**
 25. **HackTools**
 26. **JavaScript Restrictor**
+27. **Hackbar v2**
 
 </p2>
 
