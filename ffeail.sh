@@ -4,6 +4,7 @@ set -e  # Stop on first error
 # List of extensions (.xpi download URLs)
 EXTENSIONS=(
     "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
+    "https://addons.mozilla.org/firefox/downloads/file/3961037/hackbar_free-2.5.3.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4199397/openvideo-4.2.1.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4349514/noscript-11.4.37.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4297951/buster_captcha_solver-3.1.0.xpi"
