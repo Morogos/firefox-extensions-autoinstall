@@ -17,31 +17,32 @@ script works with any profile it finds that is firefox based. If the extension .
     
 1. **Bitwarden Password Manager**
 2. **OpenVideo**
-3. **NoScript**
-4. **Buster Captcha Solver**
-5. **Archive**
-6. **Search by Image**
-7. **Privacy Possum**
-8. **Privacy Badger**
-9. **Location Guard**
-10. **Flagfox**
-11. **Ghostery**
-12. **Fake Filler**
-13. **DuckDuckGo Privacy Suite**
-14. **Disconnect**
-15. **Disable WebRTC**
-16. **Decentraleyes**
-17. **Dark Reader**
-18. **ClearURLs**
-19. **CanvasBlocker**
-20. **User-Agent String Switcher**
-21. **AdNauseam**
-22. **WhatCampaign**
-23. **Violent Monkey**
-24. **uBlock Origin**
-25. **HackTools**
-26. **JavaScript Restrictor**
-27. **Hackbar v2**
+3. **Lingva**
+4. **NoScript**
+5. **Buster Captcha Solver**
+6. **Archive**
+7. **Search by Image**
+8. **Privacy Possum**
+9. **Privacy Badger**
+10. **Location Guard**
+11. **Flagfox**
+12. **Ghostery**
+13. **Fake Filler**
+14. **DuckDuckGo Privacy Suite**
+15. **Disconnect**
+16. **Disable WebRTC**
+17. **Decentraleyes**
+18. **Dark Reader**
+19. **ClearURLs**
+20. **CanvasBlocker**
+21. **User-Agent String Switcher**
+22. **AdNauseam**
+23. **WhatCampaign**
+24. **Violent Monkey**
+25. **uBlock Origin**
+26. **HackTools**
+27. **JavaScript Restrictor**
+28. **Hackbar v2**
 
 </p2>
 
