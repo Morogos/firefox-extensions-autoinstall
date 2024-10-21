@@ -3,6 +3,7 @@ set -e  # Stop on first error
 
 # List of extensions (.xpi download URLs)
 EXTENSIONS=(
+    "https://addons.mozilla.org/firefox/downloads/file/4340816/lingva-1.9.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4348137/bitwarden_password_manager-2024.8.2.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/3961037/hackbar_free-2.5.3.xpi"
     "https://addons.mozilla.org/firefox/downloads/file/4199397/openvideo-4.2.1.xpi"
